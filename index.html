@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exotic Cars - Rental Form & Bill</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <div class="form-wrapper">
+            <!-- Box 1: Basic Info -->
+            <div class="info-card">
+                <h1>Basic Info</h1>
+                <form id="basic-info-form">
+                    <div class="input-group">
+                        <label for="name">Name :</label>
+                        <input type="text" id="name" name="name" required autocomplete="name">
+                    </div>
+                    <div class="input-group">
+                        <label for="id-card">ID card :</label>
+                        <input type="text" id="id-card" name="id-card" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="address">Address :</label>
+                        <input type="text" id="address" name="address" required autocomplete="street-address">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact">Contact :</label>
+                        <input type="tel" id="contact" name="contact" required autocomplete="tel">
+                    </div>
+                </form>
+            </div>
+
+            <!-- Box 2: Rental Preference -->
+            <div class="info-card preference-card">
+                <h1>Rental Preference</h1>
+                <div class="preference-options">
+                    <button type="button" class="pref-option" id="btn-dealership">
+                        <span>I'll pick the car from the delearship</span>
+                    </button>
+                    <button type="button" class="pref-option" id="btn-delivery">
+                        <span>I need it delivered to my location</span>
+                    </button>
+                </div>
+
+                <!-- Dealership Details Dropdown -->
+                <div class="dealership-details" id="dealership-details">
+                    <div class="input-group">
+                        <label for="dealership-pickup">Pick-up Date & Time :</label>
+                        <div class="input-with-reset">
+                            <input type="datetime-local" id="dealership-pickup" class="datetime-input">
+                            <button type="button" class="reset-btn" data-target="dealership-pickup" title="Clear Date">&times;</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="dealership-dropoff">Drop-off Date & Time :</label>
+                        <div class="input-with-reset">
+                            <input type="datetime-local" id="dealership-dropoff" class="datetime-input">
+                            <button type="button" class="reset-btn" data-target="dealership-dropoff" title="Clear Date">&times;</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="dealership-period">Rental Period :</label>
+                        <div class="display-box" id="dealership-period">Select dates to calculate</div>
+                    </div>
+                </div>
+
+                <!-- Delivery Details Dropdown -->
+                <div class="delivery-details" id="delivery-details">
+                    <div class="input-group">
+                        <label for="delivery-pickup">Pick-up Date & Time :</label>
+                        <div class="input-with-reset">
+                            <input type="datetime-local" id="delivery-pickup" class="datetime-input">
+                            <button type="button" class="reset-btn" data-target="delivery-pickup" title="Clear Date">&times;</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="delivery-pickup-loc">Pick-up Location :</label>
+                        <input type="text" id="delivery-pickup-loc">
+                    </div>
+                    <div class="input-group">
+                        <label for="delivery-dropoff">Drop-off Date & Time :</label>
+                        <div class="input-with-reset">
+                            <input type="datetime-local" id="delivery-dropoff" class="datetime-input">
+                            <button type="button" class="reset-btn" data-target="delivery-dropoff" title="Clear Date">&times;</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="delivery-dropoff-loc">Drop-off Location :</label>
+                        <input type="text" id="delivery-dropoff-loc">
+                    </div>
+                    <div class="input-group">
+                        <label for="delivery-period">Rental Period :</label>
+                        <div class="display-box" id="delivery-period">Select dates to calculate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box 3: Bill Section -->
+            <div class="info-card bill-card locked" id="bill-card">
+                <div class="bill-header" id="bill-header-toggle">
+                    <h1>Bill</h1>
+                </div>
+                <div class="bill-content" id="bill-content">
+                    <div class="input-group">
+                        <label for="car-select">Car :</label>
+                        <select id="car-select" class="car-dropdown">
+                            <option value="" disabled selected hidden>Select an exotic car</option>
+                            <option value="lamborghini">lamborghini huracan (white)</option>
+                            <option value="mclaren">Mclaren 765 Lt (purple)</option>
+                            <option value="rollsroyce">Rolls Royce Ghost (dark green)</option>
+                            <option value="mercedes">Mercedes S-Class (blck)</option>
+                            <option value="ferrari">Ferrari SF-90 (matt grey)</option>
+                            <option value="aston">Aston martin vanquish</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Rent :</label>
+                        <div class="display-box" id="bill-rent">please select your car</div>
+                    </div>
+                    <div class="input-group">
+                        <label>delivery charges :</label>
+                        <div class="display-box" id="bill-delivery-fee">$$</div>
+                    </div>
+
+                    <div class="payable-group">
+                        <span class="payable-label">Payable Amount :</span>
+                        <span class="payable-value" id="bill-payable">$$</span>
+                    </div>
+
+                    <div class="payment-box">
+                        <div class="payment-title">Payment Transcation : <span class="txn-code">XXXXXX</span></div>
+                        <div class="upload-area" id="upload-trigger">
+                            <p id="upload-text">Attach the screenshot of the payment once done</p>
+                            <div class="camera-icon">
+                                <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                            </div>
+                            <input type="file" id="payment-file-input" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="terms-group">
+                        <input type="checkbox" id="terms">
+                        <label for="terms">Terms & conditions</label>
+                    </div>
+
+                    <div class="confirm-container">
+                        <button type="button" class="confirm-btn" id="confirm-btn">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Booking Confirmation Popup Modal -->
+    <div class="modal-overlay" id="confirmation-modal">
+        <div class="modal-card">
+            <h2>Booking Confirmed</h2>
+            <div class="check-icon-wrapper">
+                <svg viewBox="0 0 52 52" class="checkmark">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="#4CAF50"/>
+                    <path class="checkmark-check" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M14 27l7 7 16-16"/>
+                </svg>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="modal-btn" id="btn-homepage">go to homepage</button>
+                <button type="button" class="modal-btn" id="btn-another-booking">Place another booking</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
